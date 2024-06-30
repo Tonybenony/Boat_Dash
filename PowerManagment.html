@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Style.css">
+    <script src="Scripts.js"></script>
+    <title>Document</title>    
+    <style>
+        cover{position:absolute; backdrop-filter: blur(px);top: 0;bottom: 0;left: 0;right: 0;z-index: 0;}
+        PWRBox{display: block;width: 500px;height: 500px;background-image: url(assets/Boat.png);background-size: 60%;background-position: center;background-repeat: no-repeat;background-color: transparent;margin: auto;margin-top: 3em;z-index: 2;}
+        .switch:nth-child(1){top: 20px;left: 220px;}
+        .switch:nth-child(2){top: 250px;left: 260px;}
+        .switch:nth-child(3){top: 250px;left: -40px;}
+        .switch:nth-child(4){top: 400px;left: -70px;}
+        .switch:nth-child(5){top: 400px;left: 10px;}
+        .switch:nth-child(6){top: 330px;left: -135px;}
+
+        .switch {position: relative;display: inline-block;width: 66px;height: 38px;}
+        .switch input {opacity: 0;width: 0;height: 0;}
+        .slider {position: absolute;cursor: pointer;top: 0;left: 0;right: 0;bottom: 0;background: linear-gradient(to right, black 0%, red 150%);-webkit-transition: .4s;transition: .4s;border: 3px solid var(--clr-bg2);}
+        .slider:before {position: absolute;content: "";height: 26px;width: 26px;left: 4px;bottom: 2px;background-color: var(--clr-bg2);border: 2px solid var(--clr-akzent1);-webkit-transition: .4s;transition: .4s;}
+        input:checked + .slider { background: linear-gradient(to right, rgb(0, 255, 72) 0%, black 150%);}
+        input:focus + .slider {box-shadow: 0 0 1px #2196F3;}
+        input:checked + .slider:before {-webkit-transform: translateX(26px);-ms-transform: translateX(26px);transform: translateX(26px);}
+        .slider.round {border-radius: 34px;}
+        .slider.round:before {border-radius: 50%;}
+    </style>
+</head>
+<body>
+    <cover>
+        
+    
+    <PWRBox>
+    <label id="1" class="switch"><input type="checkbox"><span class="slider round"></span></label>
+    <label id="2" class="switch"><input type="checkbox"><span class="slider round"></span></label>
+    <label id="3" class="switch"><input type="checkbox"><span class="slider round"></span></label>
+    <label id="4" class="switch"><input type="checkbox"><span class="slider round"></span></label>
+    <label id="5" class="switch"><input type="checkbox"><span class="slider round"></span></label>
+    <label id="6" class="switch"><input type="checkbox"><span class="slider round"></span></label>
+    </PWRBox>
+</cover>
+</body>
+</html>
