@@ -1,0 +1,80 @@
+<html>
+<head>
+    <style>
+
+        *{outline: 0px solid red;}
+        *{padding: 0;margin: 0;border: none;font-family: Arial, Helvetica, sans-serif;}
+
+        nav{display: grid;grid-template-columns: 1fr;grid-area: nav;background: #333;border-right: 3px solid rgba(0, 90, 129, 1);padding: 0.5em;padding-bottom: 1em;padding-top: 1em;align-items: center;justify-items: center;gap: 0.5em;}
+        header{display: grid;grid-template-columns: repeat(3, 1fr);grid-area: header;background-color: #333;border-bottom: 3px solid rgba(0, 90, 129, 1);width: 100%;margin-left: auto;margin-right: auto;}
+        header div,footer div{display: flex;background-color: rgba(0, 0, 0, 0.31);margin: 0.3em;border-bottom: 3px solid transparent;border-left: 3px solid transparent;}
+        .content{grid-area: content;width: 100%;height: 100%;}
+        footer{display: grid;grid-template-columns: repeat(5, 1fr);grid-area: footer;background-color: #333;color: white;border-top: 3px solid #005a81;width: 100%;margin-left: auto;margin-right: auto;}
+        main{display: grid;grid-template-rows: auto 75% auto;grid-template-columns: 15% auto;gap: 0;grid-template-areas: "header header header""nav content content""nav footer footer";width: 100%;height: 100%;}
+        nav a{display: block;text-align: center;text-decoration: none;background-color: rgba(0, 0, 0, 0.31);color: white;margin: auto;border-bottom: 3px solid transparent;border-left: 3px solid transparent;height: 100%;    width: 100%;}
+        nav a p{position: relative;top: 50%;}
+        nav a:hover,nav a:focus,nav a:active,div:hover,div:focus,div:active{border-color: rgba(0, 90, 129, 1);background-color: #ffa57e;color: black;}
+        header div p{width: 100%;text-align: center;color: white;padding-top: 5em;}
+        header div{background-repeat: no-repeat;}
+
+        header div:nth-child(1){background-image: url(assets/speed-icon.png);background-position: center;background-size: contain;}
+        header div:nth-child(2){background-image: url(assets/gps.png);background-position: center;background-size: contain;}
+        header div:nth-child(3){background-image: url(assets/compass.png);background-position: center;background-size: contain;}
+        header div:active,header div:focus,header div:hover{background-color: #ffa57e;}
+        #speed,#gps,#heading{display: none;}
+        #speed prompt{background-image: url(assets/speed-icon.png)}
+        #gps prompt{background-image: url(assets/gps.png)}
+        #heading prompt{background-image: url(assets/compass.png)}
+        msg{position: absolute;background-color: #33333365;margin: 0;padding: 0;top: 0;bottom: 0;left: 0;right: 0;width: 100%;height: 100%;}
+        prompt{position: relative;display: block;background-color: white;border: 5px solid #ffa57e;color: #000;  width: 50%;margin: auto;margin-top: 30%;opacity: 0.9;border-radius: 2em;padding-bottom: 2em;padding-top: 2em;text-align: center;background-position: center;background-size: contain;background-repeat: no-repeat;background-blend-mode:difference}
+        prompt img{width: 30%;}
+        prompt p{display: block; width: 50%;margin: auto;}
+        prompt hr {border: 1px solid #33333349;width: 100%;margin: auto;margin-top: 1em;}
+        prompt info {font-weight: bold; display: block; width: 50%;margin: auto;text-align: center;margin-top: 1em;}
+        prompt value{background-color: white;color: #ffa57e;font-family: monospace;font-size: 2em;font-weight: bold; display: block; width: 30%;margin: auto;text-align: center;border: 5px solid #ffa57e;}
+
+    </style>
+    <script>
+        function ShowSpeed(){document.getElementById("speed").style.display ="block"}
+        function HideSpeed(){document.getElementById("speed").style.display ="none"}
+        
+        function ShowGps(){document.getElementById("gps").style.display ="block"}
+        function HideGps(){document.getElementById("gps").style.display ="none"}
+        
+        function ShowHeading(){document.getElementById("heading").style.display ="block"}
+        function HideHeading(){document.getElementById("heading").style.display ="none"}
+    </script>
+</head>
+<body>
+    <main>
+        <nav>
+            <a target="content" href="1.html" target><p>test</p></a>
+            <a target="content" href="2.html" target><p>test</p></a>
+            <a target="content" href="3.html" target><p>test</p></a>
+            <a target="content" href="4.html" target><p>test</p></a>
+            <a target="content" href="https://www.google.com/maps/preview/?force=webgl" target><p>test</p></a>
+            <a target="content" href="https://map.openseamap.org/" target><p>Map</p></a>
+        </nav>
+        <header>
+            <div onclick="ShowSpeed()"><p>500kn</p></div>
+            <div onclick="ShowGps()"><p>00000</p></div>
+            <div onclick="ShowHeading()"><p>00000</p></div>
+
+        </header>
+        <iframe class="content "name="content" src="frontPage.html"></iframe>
+        <footer>
+            <div><img src="" alt=""></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </footer>
+    </main>
+
+    <msg id="speed"   onclick="HideSpeed()"><prompt><p>Hier wird die Geschwindigkeit in Knoten angezeigt <hr></p><info>Knoten</info><value>$SPD$</value></prompt></msg>
+    <msg id="gps"     onclick="HideGps()"><prompt><p>Hier werden die GPS Coordinaten angezeigt <hr></p><info>Knoten</info><value>$GPS$<br>$GPS$<br>$GPS$</value></prompt></msg>
+    <msg id="heading" onclick="HideHeading()"><prompt><p>Hier wird der Compasswinkel in Grad angezeigt<hr></p><info>Grad</info><value>$DEG$</value></prompt></msg>
+
+    <!-- Offlinekarten unter https://ftp.gwdg.de/pub/misc/openstreetmap/openseamap/charts/kap/ -->
+</body>
+</html>
