@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        :root{
+            --clr-compass: white;
+            --clr-compass2:rgb(150, 150, 150);
+        }
+html{background-color: #333;}
+container{
+    position: relative;
+    display: block;
+    top: 5em;
+    left: 5em;
+    width: 430px;
+    height: 430px;
+    transform: rotate(180deg);
+    background: radial-gradient(circle at 50%, transparent 1%, transparent 30%, #005a80 90%);
+    border-radius: 100%;
+}
+    
+compass{
+    position: absolute;
+    display: block;
+    top: -68px;
+    left: -68px;
+    width: 400px;
+    height: 400px;
+    border: 3px solid transparent;
+    border-radius: 100%;
+    margin: 5em;
+    padding: 0;
+    z-index: 1;
+}
+compass::before{
+    position: absolute;
+    top: -17px;
+    left: -17px;
+    content: "";
+    width: 430px;
+    height: 430px;
+    border: 3px solid transparent;
+    border-radius: 100%;
+    z-index: 1;
+}
+compass::after{
+    position: absolute;
+    top: -30px;
+    left: 200px;
+    content: "";
+    width: 50px;
+    height: 50px;
+    border-bottom: 5px solid white;
+    z-index: 1;
+    transform: rotate(90deg);
+}
+compass p{
+    position: absolute;
+    top: -140px;
+    left: 183px;
+    color: white;
+    font-size: 3em;
+    font-family: 'Times New Roman', Times, serif;
+
+}
+
+        compass hr{position: absolute;width: 50px;border: 3px solid var(--clr-compass);margin: 0;padding: 0;z-index: 2;}
+        compass hr:nth-child(1){top: 0px;left: 225px;transform: rotate(90deg);z-index: 2;}
+
+        compass:nth-child(1){border-color: white;}
+        compass:nth-child(2){transform: rotate(15deg);z-index: 2;}
+        compass:nth-child(3){transform: rotate(30deg);z-index: 2;}
+        compass:nth-child(4){transform: rotate(45deg);z-index: 2;}
+        compass:nth-child(5){transform: rotate(60deg);z-index: 2;}
+        compass:nth-child(6){transform: rotate(75deg);z-index: 2;}
+        compass:nth-child(7){transform: rotate(90deg);z-index: 2;}
+        compass:nth-child(8){transform: rotate(105deg);z-index: 2;}
+        compass:nth-child(9){transform: rotate(120deg);z-index: 2;}
+        compass:nth-child(10){transform: rotate(135deg);z-index: 2;}
+        compass:nth-child(12){transform: rotate(150deg);z-index: 2;}
+        compass:nth-child(13){transform: rotate(165deg);z-index: 2;}
+        compass:nth-child(14){transform: rotate(180deg);z-index: 2;}
+        compass:nth-child(26){transform: rotate(180deg);z-index: 2;}
+        compass:nth-child(15){transform: rotate(195deg);z-index: 2;}
+        compass:nth-child(16){transform: rotate(210deg);z-index: 2;}
+        compass:nth-child(17){transform: rotate(225deg);z-index: 2;}
+        compass:nth-child(18){transform: rotate(240deg);z-index: 2;}
+        compass:nth-child(19){transform: rotate(255deg);z-index: 2;}
+        compass:nth-child(20){transform: rotate(270deg);z-index: 2;}
+        compass:nth-child(21){transform: rotate(285deg);z-index: 2;}
+        compass:nth-child(22){transform: rotate(300deg);z-index: 2;}
+        compass:nth-child(23){transform: rotate(315deg);z-index: 2;}
+        compass:nth-child(24){transform: rotate(330deg);z-index: 2;}
+        compass:nth-child(25){transform: rotate(345deg);z-index: 2;}
+        
+        compass:nth-child(1)::before{border-color: white;}
+        compass:nth-child(14)::after{border-color: red;width: 0px;height: 0px;left: 150px;top: -98px;border-left:50px solid transparent;border-right:   50px solid red;border-bottom:  20px solid transparent;border-top:20px solid transparent;}
+
+        compass:nth-child(1) p{transform: rotate(180deg);z-index: 2;}
+        compass:nth-child(7) p{transform: rotate(90deg);z-index: 2;}
+        compass:nth-child(14) p{transform: rotate(0deg);z-index: 2;}
+        compass:nth-child(20) p{transform: rotate(90deg);z-index: 2;}
+    </style>
+</head>
+<body>
+<container>
+<compass><p>S</p></compass>
+<compass></compass>
+<compass></compass>
+<compass></compass>
+<compass></compass>
+<compass></compass>
+<compass><p>W</p></compass>
+<compass></compass>
+<compass></compass>
+<compass></compass>
+<compass></compass>
+<compass></compass>
+<compass></compass>
+<compass><p>N</p></compass>
+<compass></compass>
+<compass></compass>
+<compass></compass>
+<compass></compass>
+<compass></compass>
+<compass><p>O</p></compass>
+<compass></compass>
+<compass></compass>
+<compass></compass>
+<compass></compass>
+<compass></compass>
+<compass></compass>
+<compass></compass>
+</container>
+</body>
+</html>
