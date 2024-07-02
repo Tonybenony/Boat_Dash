@@ -39,4 +39,3 @@ prompt p{display: block; width: 50%;margin: auto;}
 prompt hr {border: 1px solid #33333349;width: 100%;margin: auto;margin-top: 1em;}
 prompt info {font-weight: bold; display: block; width: 50%;margin: auto;text-align: center;margin-top: 1em;}
 prompt value{background-color: var(--clr-txt1);color: var(--clr-akzent2);font-family: monospace;font-size: 2em;font-weight: bold; display: block; width: 30%;margin: auto;text-align: center;border: 5px solid var(--clr-akzent2);}
-

@@ -16,6 +16,7 @@
         .switch:nth-child(5){top: 400px;left: 10px;}
         .switch:nth-child(6){top: 330px;left: -135px;}
 
+        info{position: relative; background-color: transparent;color: white;top: 9px;left: 40px;-webkit-transition: .4s;transition: .4s;}
         .switch {position: relative;display: inline-block;width: 66px;height: 38px;}
         .switch input {opacity: 0;width: 0;height: 0;}
         .slider {position: absolute;cursor: pointer;top: 0;left: 0;right: 0;bottom: 0;background: linear-gradient(to right, black 0%, red 150%);-webkit-transition: .4s;transition: .4s;border: 3px solid var(--clr-bg2);}
@@ -24,21 +25,95 @@
         input:focus + .slider {box-shadow: 0 0 1px #2196F3;}
         input:checked + .slider:before {-webkit-transform: translateX(26px);-ms-transform: translateX(26px);transform: translateX(26px);}
         .slider.round {border-radius: 34px;}
-        .slider.round:before {border-radius: 50%;}
+        .slider.round:before {border-radius: 50%;z-index: 10;}
+        html{background: black;}
+        iframe{background-color: white;display: none;}
+        table{position: fixed; width: 100%;bottom: 2em;padding-left: 1em;padding-right: 1em;margin: 0;color: white;}
+        table tr td{margin: 0; padding: 0em;padding-left: 1em;padding-right: 1em;}
+        table tr td:nth-child(1){width: 10px;padding: 0;margin: 0;}
+
     </style>
+    <script>
+        function Check(x){
+            label = document.getElementById(x).parentElement.getElementsByTagName("info")[0]
+            box = document.getElementById(x).checked
+            href = 'http://127.0.0.1/cgi-bin/test.sh?'+x
+            if (box == true){
+                label.innerHTML = "on"
+                label.style.left="10px" 
+                label.style.color="black" 
+                console.log(box)
+                console.log(href)
+                window.open(href, 'hide');
+                document.getElementsByName(x)[0].style.backgroundColor ="var(--clr-akzent1)";
+                document.getElementsByName(x)[0].getElementsByTagName("td")[0].style.backgroundColor ="rgb(0, 255, 72)";
+            }else{
+                label.innerHTML = "off"
+                label.style.left="40px" 
+                label.style.color="white" 
+                console.log(box)
+                console.log(href)
+                window.open(href, 'hide');
+                document.getElementsByName(x)[0].style.backgroundColor ="transparent";
+                document.getElementsByName(x)[0].getElementsByTagName("td")[0].style.backgroundColor ="transparent";
+            }
+        }
+    </script>
 </head>
 <body>
     <cover>
-        
-    
     <PWRBox>
-    <label id="1" class="switch"><input type="checkbox"><span class="slider round"></span></label>
-    <label id="2" class="switch"><input type="checkbox"><span class="slider round"></span></label>
-    <label id="3" class="switch"><input type="checkbox"><span class="slider round"></span></label>
-    <label id="4" class="switch"><input type="checkbox"><span class="slider round"></span></label>
-    <label id="5" class="switch"><input type="checkbox"><span class="slider round"></span></label>
-    <label id="6" class="switch"><input type="checkbox"><span class="slider round"></span></label>
+    <label title="GPIO_23" class="switch"><input id="23" onchange="Check('23')" type="checkbox"><span class="slider round"></span><info>off</info></label>
+    <label title="GPIO_24" class="switch"><input id="24" onchange="Check('24')" type="checkbox"><span class="slider round"></span><info>off</info></label>
+    <label title="GPIO_17" class="switch"><input id="17" onchange="Check('17')" type="checkbox"><span class="slider round"></span><info>off</info></label>
+    <label title="GPIO_27" class="switch"><input id="27" onchange="Check('27')" type="checkbox"><span class="slider round"></span><info>off</info></label>
+    <label title="GPIO_22" class="switch"><input id="22" onchange="Check('22')" type="checkbox"><span class="slider round"></span><info>off</info></label>
+    <label title="GPIO_5" class="switch"><input id="5" onchange="Check('5')" type="checkbox"><span class="slider round"><info>off</info></span></label>
+    <iframe src="#" frameborder="0" name="hide"></iframe>
     </PWRBox>
 </cover>
+<table>
+    <tr id="table_head">
+        <th colspan="2">Function</th>
+        <th>GPIO</th>
+        <th>Relay</th>
+    </tr>
+    <tr name="23">
+        <td></td>
+        <td>Mainlight</td>
+        <td>GPIO_23</td>
+        <td>K1</td>
+    </tr>
+<tr name="24">
+    <td></td>
+    <td>Steuerboard Navlight</td>
+    <td>GPIO_24</td>
+    <td>K2</td>
+</tr>
+<tr name="17">
+    <td></td>
+    <td>Backboard Navlight</td>
+    <td>GPIO_17</td>
+    <td>K3</td>
+</tr>
+<tr name="27">
+    <td></td>
+    <td>Backboard Underwater light</td>
+    <td>GPIO_27</td>
+    <td>K4</td>
+</tr>
+<tr name="22">
+    <td></td>
+    <td>Steuerboard Underwater light</td>
+    <td>GPIO_22</td>
+    <td>K5</td>
+</tr>
+<tr name="5">
+    <td></td>
+    <td>Interior lights</td>
+    <td>GPIO_5</td>
+    <td>K6</td>
+</tr>
+</table>
 </body>
 </html>

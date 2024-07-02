@@ -1,0 +1,40 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Style.css">
+    <script src="Scripts.js"></script>
+    <title>Startseite</title>  
+</head>
+<body>
+    <main>
+        <nav>
+            <a target="content" href="PowerManagment.html" target><p>Lights</p></a>
+            <a target="content" href="https://map.openseamap.org/" target><p>Map</p></a>
+            <a target="content" href="sonar.html" target><p>Sonar</p></a>
+            <a target="content" href="radar.html" target><p>Radar</p></a>
+            <!-- <a target="content" href="2.html" target><p>test</p></a> -->
+        </nav>
+        <header>
+            <div onclick="ShowSpeed()"><p>500kn</p></div>
+            <div onclick="ShowGps()"><p>00000</p></div>
+            <div onclick="ShowHeading()"><p>00000</p></div>
+
+        </header>
+        <iframe class="content "name="content" src="frontPage.html"></iframe>
+        <footer>
+            <div onclick="window.open('Temperature.html', 'content');"><p>Temperature</p></div>
+            <div onclick="window.open('Temperature.html', 'content');"><p>Humidity</p></div>
+            <p></p>
+            <p></p>
+            <div onclick="window.open('wetter.html', 'content');"><p>Wetter</p></div>
+        </footer>
+    </main>
+
+    <msg id="speed"   onclick="HideSpeed()"><prompt><p>Hier wird die Geschwindigkeit in Knoten angezeigt <hr></p><info>Knoten</info><value>$SPD$</value></prompt></msg>
+    <msg id="gps"     onclick="HideGps()"><prompt><p>Hier werden die GPS Coordinaten angezeigt <hr></p><info>Knoten</info><value>$GPS$<br>$GPS$<br>$GPS$</value></prompt></msg>
+    <msg id="heading" onclick="HideHeading()"><prompt><p>Hier wird der Compasswinkel in Grad angezeigt<hr></p><info>Grad</info><value>$DEG$</value></prompt></msg>
+
+    <!-- Offlinekarten unter https://ftp.gwdg.de/pub/misc/openstreetmap/openseamap/charts/kap/ -->
+</body>
+</html>
