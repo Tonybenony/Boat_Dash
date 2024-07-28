@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="ValueStyle.css">
+
+    <script>
+    function load(){
+            Promise.all([
+            fetch('speed.txt').then(x => x.text())])
+            .then(([sampleResp, sample2Resp]) => {
+            console.log(sampleResp);
+            document.getElementById("fet").innerHTML = sampleResp;
+            });
+            console.log("test")
+        }
+    var intervalId = window.setInterval(function(){
+        load()
+    }, 500);
+
+    </script>
+</head>
+<body onload="load()">
+    <value id="fet"></value>
+</body>
+</html>
