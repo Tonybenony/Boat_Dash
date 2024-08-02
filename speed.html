@@ -2,25 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <link rel="stylesheet" href="ValueStyle.css">
-    <script>
-    function load(){
-            Promise.all([
-            fetch('speed.txt').then(x => x.text())])
-            .then(([sampleResp, sample2Resp]) => {
-            console.log(sampleResp);
-            document.getElementById("fet").innerHTML = sampleResp;
-            });
-            console.log("test")
-        }
-    var intervalId = window.setInterval(function(){
-        load()
-    }, 500);
-
-    </script>
+    <title>WebSocker Speed</title>
 </head>
-<body onload="load()">
-    <value id="fet"></value>
+<body>
+    <button id="btn" onclick="show()">Connect !</button>
 </body>
+<script>
+
+function show(){
+    const socket = new WebSocket('ws://localhost:9990');
+    socket.addEventListener(
+        'open',
+        function (event) {
+            socket.send('Connection Established');
+        }
+    );
+document.getElementById("btn").onclick = "disconnect()";
+socket.addEventListener(
+    'message',
+    function (event) {
+        document.getElementById("fet").innerHTML = event.data
+    }
+);
+setTimeout(() => show(), 50)
+}
+
+const contactServer = () => {
+    socket.send("Initialize");
+}
+function disconnect(){
+    document.getElementById("btn").onclick = "show()";
+
+}
+</script>
+<value id="fet"></value>
 </html>

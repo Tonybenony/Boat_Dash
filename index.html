@@ -9,20 +9,55 @@
         <info>ZNK<br>Solution</info>
     </overlay>
     <style>
-        overlay{display: block;position: absolute;top: 0;bottom: 0;left: 0;right: 0;z-index: 11;background-color: black;   background-position: center center;background-size:cover;background-repeat: no-repeat;overflow: hidden;animation: backloading 10s linear forwards;}
-        logo{display: block;position: absolute;top: 0;bottom: 0;left: 0;right: 0;z-index: 12;background-image: url(assets/logo.png);background-position: center center;background-size:50%;background-repeat: no-repeat;backdrop-filter: blur(0px);filter: drop-shadow(0 0 50px #005980);animation: loading 10s linear forwards;}
-        info{display: block;font-family: 'Times New Roman', Times, serif;color: white;text-shadow: 0 0 50px #005980;position: absolute;top: 5%;bottom: 0;left: 0;right: 0;z-index: 13;font-size: 5em;text-align: center;letter-spacing: 0.3em;line-height: 4.2em;}
-        @keyframes backloading {0%{background-size: 300%;filter: grayscale(1);}
-        95%{opacity: 1;z-index: 13;}
-        100%{background-size: 250%;filter: grayscale(0);opacity: 0;display: none;z-index: -10;}}
-        @keyframes loading {0%{backdrop-filter: blur(0px);}
-        100%{backdrop-filter: blur(10px);display: none;}}
+        overlay{outline: 5px solid white;outline-offset: -15px;}
+        overlay{
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0
+            ;right: 0;
+            z-index: 11;
+            background-color: #333;
+            background-image: url("assets/port.jpg");
+            background-position: center center;
+            background-size:cover;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
+        logo{
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -70px;
+            right: 0;
+            z-index: 12;
+            background-image: url(assets/logo.png);
+            background-position: center center;
+            background-size:30%;
+            background-repeat: no-repeat;
+            backdrop-filter: blur(0px);
+        }
+        info{
+            display: block;
+            font-family: 'Times New Roman', Times, serif;
+            color: white;
+            position: absolute;
+            top:-200px;
+            width: 100%;
+            z-index: 13;
+            font-size: 5em;
+            text-align: center;
+            letter-spacing: 50px;
+            line-height: 500px;
+        }
     </style>
 </head>
 <body onload="redirect()">
 <script>
-    function redirect () {setTimeout(myURL, 10000);}
-    function myURL() {document.location.href = 'Main-Page.html';}
+    function redirect () {setTimeout(myURL, 5000);}
+    function myURL() {document.location.href = 'Index2.html';}
 </script>
 </body>
 </html>

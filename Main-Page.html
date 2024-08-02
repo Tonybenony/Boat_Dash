@@ -2,37 +2,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Style.css">
-    <script src="Scripts.js"></script>
+    <link rel="stylesheet" href="http://192.168.178.38/Style.css">
+    <script src="http://192.168.178.38/Scripts.js"></script>
     <title>Startseite</title>  
 </head>
 <body>
     <main>
         <nav>
-            <a target="content" href="PowerManagment.html" target><p>Lights</p></a>
+            <a target="content" href="http://192.168.178.38/PowerManagment.html" target><p>Lights</p></a>
             <a target="content" href="https://map.openseamap.org/" target><p>Map</p></a>
-            <a target="content" href="speed.html" target><p>test.py</p></a>
-            <a target="content" href="Compass.html" target><p>Compass</p></a>
+            <a target="content" href="http://192.168.178.38/speed.html" target><p>test.py</p></a>
+            <a target="content" href="http://192.168.178.38/Compass.html" target><p>Compass</p></a>
         </nav>
-        <header>
-            <div onclick="ShowSpeed()"><iframe src="speed.html" frameborder="0"></iframe></div>
-            <div onclick="ShowGps()"><iframe src="gps.html" frameborder="0"></iframe></div>
-            <div onclick="ShowHeading()"><iframe src="heading.html" frameborder="0"></iframe></div>
-        </header>
-        <iframe class="content "name="content" src="frontPage.html"></iframe>
-        <footer>
-            <div onclick="window.open('Temperature.html', 'content');"><p>Temperature</p></div>
-            <div onclick="window.open('Temperature.html', 'content');"><p>Humidity</p></div>
-            <p></p>
-            <p></p>
-            <div onclick="window.open('wetter.html', 'content');"><p>Wetter</p></div>
-        </footer>
+        <iframe class="content "name="content" src="https://map.openseamap.org/"></iframe>
     </main>
-
-    <msg id="speed"   onclick="HideSpeed()"><prompt><p>Hier wird die Geschwindigkeit in Knoten angezeigt <hr></p><info>Knoten</info><value>$SPD$</value></prompt></msg>
-    <msg id="gps"     onclick="HideGps()"><prompt><p>Hier werden die GPS Coordinaten angezeigt <hr></p><info>Knoten</info><value>$GPS$<br>$GPS$<br>$GPS$</value></prompt></msg>
-    <msg id="heading" onclick="HideHeading()"><prompt><p>Hier wird der Compasswinkel in Grad angezeigt<hr></p><info>Grad</info><value>$DEG$</value></prompt></msg>
-
-    <!-- Offlinekarten unter https://ftp.gwdg.de/pub/misc/openstreetmap/openseamap/charts/kap/ -->
 </body>
 </html>
