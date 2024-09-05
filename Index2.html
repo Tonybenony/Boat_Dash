@@ -5,85 +5,231 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        *{margin: 0;padding: 0;}
-        html, body{margin: 0;padding: 0;background-color: black;overflow: hidden;}
-        header, footer{
-            position: absolute;
-            display: flex;
-            background-color: #333;
-            left: 0;
-            right: 0;
-            height: 50px;
-            justify-content: center;
-            align-items: center;
-        }
-        header{top: 0;}
-        footer{bottom: 0;}
-        container{
-            width: 70%;
-            height: 90%;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            margin-left: 50px;
-            margin-right: 50px; 
+*{margin: 0;padding: 0;}
+html, body{margin: 0;padding: 0;background-color: black;overflow: hidden;}
+header{
+position: absolute;
+display: flex;
+background-color: #333;
+left: 0;
+right: 0;
+height: 50px;
+justify-content: center;
+align-items: center;
+}
+header{top: 0;}
+a{
+display: flex;
+border: 1px solid black;
+border-radius: 5px;
+justify-content: center;
+align-items: end;
+text-decoration: none;
+color: black;
+font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+font-weight: bold;
+letter-spacing: 3px;
+font-size: 20px;
+background: wheat;
+background-position: center;
+background-repeat: no-repeat;
+background-size: contain;
+}
+header{border-bottom: 3px solid wheat;z-index: 1;}
 
-        }
-        a{
-            display: flex;
-            border: 1px solid black;
-            border-radius: 5px;
-            justify-content: center;
-            align-items: end;
-            text-decoration: none;
-            color: black;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            font-weight: bold;
-            letter-spacing: 3px;
-            font-size: 20px;
-            background: wheat;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: contain;
-        }
-        header{border-bottom: 3px solid wheat;z-index: 1;}
-        footer{border-top: 3px solid wheat;z-index: 1;}
-        header container a,footer container a{
-            margin: 5px;
-            height: 80%;
-            align-items: center;
-        }
+.mainframe{
+margin: 0;
+padding: 0;
+position: absolute;
+top: 50px;
+left: 0;
+width: 100%;
+height: 550px;
+border: none;
+overflow: hidden;
+}
 
-        iframe{
-            margin: 0;
-            padding: 0;
-            position: absolute;
-            top: 50px;
-            left: 0;
-            width: 100%;
-            height: 500px;
-            border: none;
-            overflow: hidden;
-        }
-        #home {position: absolute; background-image: url("assets/home.png");height: 80%;aspect-ratio: 1/1;left: 20px;}
-        a:hover, a:hover img{border-color: rgb(66, 0, 0);background-color: rgba(0, 0, 0, 0.244);color: red;}
+#home {
+position: absolute;
+background-image: url("assets/setting.png");
+background-size: 90%;
+background-position: center center;
+background-repeat: no-repeat;
+height: 80%;
+aspect-ratio: 1/1;
+left: 20px;
+border: none;
+background-color: wheat;
+border-radius: 100%;
+}
+#setting {
+position: absolute;
+background-image: url("assets/menue.png");
+background-size: 70%;
+background-position: center center;
+background-repeat: no-repeat;
+height: 80%;
+aspect-ratio: 1/1;
+right: 20px;
+border: none;
+background-color: wheat;
+border-radius: 100%;
+}
+#home:hover, #home:hover img{
+border-color: rgb(66, 0, 0);
+background-color: rgba(0, 0, 0, 0.244);
+color: red;
+}
+#menue{
+display: block;
+background-color: #333;
+position: absolute;
+left: -220px;
+width: 200px;
+height: 100%;
+color: white;
+padding-top: 4em;
+z-index: 1;
+border-right: 3px solid wheat;
+} 
+#menue p{
+padding-top: 1.5em;
+padding-bottom: 1.5em;
+padding-left: 1em;
+margin: 0.2em;
+margin-left: auto;
+margin-right: auto;
+width: 80%;
+}
+#settings{
+display: block;
+background-color: #333;
+position: absolute;
+right: -220px;
+width: 200px;
+height: 100%;
+color: white;
+padding-top: 4em;
+z-index: 1;
+border-left: 3px solid wheat;
+} 
+#settings p{
+padding-top: 1.5em;
+padding-bottom: 1.5em;
+padding-left: 1em;
+margin: 0.2em;
+margin-left: auto;
+margin-right: auto;
+width: 80%;
+}
+.ckeck{
+margin-left: 2em;
+}
+
+.dial{
+display: none;
+background-color: transparent;
+position: absolute;
+width: 150px;
+aspect-ratio: 1/1;
+border: none;
+overflow: hidden;
+margin-left: 1em;
+margin-right: 1em;
+grid-area: "dial";
+}
+.dial1{top: 70px;right: 0;}
+.dial2{top: 220px;right: 0;}
+.dial3{top: 370px;right: 0;}
+.dial4{top: 70px;left:  0;}
+.dial5{top: 220px;left:  0;}
+.dial6{top: 370px;left:  0;}
+
 </style>
+<script>
+var MenueisChecked = true;
+var SettingisChecked = true;
+
+function onload(){
+    document.getElementById("I1").checked = false;
+    document.getElementById("I2").checked = false;
+    document.getElementById("I3").checked = false;
+    document.getElementById("I4").checked = false;
+    document.getElementById("I5").checked = false;
+    document.getElementById("I6").checked = false;
+}
+
+function toggle(a){
+    isChecked = document.getElementById(a).checked;
+    if (isChecked == true){
+        document.getElementById(a).checked = false;
+        document.getElementById("p"+a).style.background = "transparent";
+        if (a == "I1"){document.getElementsByClassName("dial1")[0].style.display = "none";}
+        if (a == "I2"){document.getElementsByClassName("dial2")[0].style.display = "none";}
+        if (a == "I3"){document.getElementsByClassName("dial3")[0].style.display = "none";}
+        if (a == "I4"){document.getElementsByClassName("dial4")[0].style.display = "none";}
+        if (a == "I5"){document.getElementsByClassName("dial5")[0].style.display = "none";}
+        if (a == "I6"){document.getElementsByClassName("dial6")[0].style.display = "none";}
+    }else{
+        document.getElementById(a).checked = true;
+        document.getElementById("p"+a).style.background = "lightblue";
+        if (a == "I1"){document.getElementsByClassName("dial1")[0].style.display = "block";}
+        if (a == "I2"){document.getElementsByClassName("dial2")[0].style.display = "block";}
+        if (a == "I3"){document.getElementsByClassName("dial3")[0].style.display = "block";}
+        if (a == "I4"){document.getElementsByClassName("dial4")[0].style.display = "block";}
+        if (a == "I5"){document.getElementsByClassName("dial5")[0].style.display = "block";}
+        if (a == "I6"){document.getElementsByClassName("dial6")[0].style.display = "block";}
+    }
+}   
+function ToggleMenue(){
+    if (MenueisChecked == true){
+        MenueisChecked = !MenueisChecked;
+        document.getElementById("menue").style.left = "0";
+        document.getElementById("home").style.backgroundColor = "lightblue";
+    }else{
+        MenueisChecked = !MenueisChecked;
+        document.getElementById("menue").style.left = "-220px";
+        document.getElementById("home").style.backgroundColor = "wheat";
+    }
+}
+function ToggleSettings(){
+    if (SettingisChecked == true){
+        SettingisChecked = !SettingisChecked;
+        document.getElementById("settings").style.right = "0";
+        document.getElementById("setting").style.backgroundColor = "lightblue";
+    }else{
+        SettingisChecked = !SettingisChecked;
+        document.getElementById("settings").style.right = "-220px";
+        document.getElementById("setting").style.backgroundColor = "wheat";
+    }
+}    
+    </script>
 </head>
-<body>
+<body onload="onload()">
+    <div id="menue">
+        <p id="pI1" onclick="toggle('I1')">RPM Dial<input type="checkbox" class="ckeck" id="I1"></p>
+        <p id="pI2" onclick="toggle('I2')">Temp Dial<input type="checkbox" class="ckeck" id="I2"></p>
+        <p id="pI3" onclick="toggle('I3')">Batt Dial<input type="checkbox" class="ckeck" id="I3"></p>
+        <p id="pI4" onclick="toggle('I4')">item 4<input type="checkbox" class="ckeck" id="I4"></p>
+        <p id="pI5" onclick="toggle('I5')">item 5<input type="checkbox" class="ckeck" id="I5"></p>
+        <p id="pI6" onclick="toggle('I6')">item 6<input type="checkbox" class="ckeck" id="I6"></p>
+    </div>
+    <div id="settings">
+        <p id="pI2"><a href="Dashboard.html" target="main">Map</a></p>
+        <p id="pI1"><a href="https://map.openseamap.org/weather.php?zoom=14&lon=5.96596&lat=51.18316&layers=TFFFFFTFFTFFFFFFFFFFFF" target="main">Weather</a></p>
+        <p id="pI3"><a href="PowerManagment.html" target="main">Power</a></p>
+        <p id="pI4"><a href="info.php" target="main">Info</a></p>
+    </div>
     <header>
-        <a href="Main-Page2.html" id="home" target="main"></a>
-        <container>
-            <!-- <a href="#">1</a> -->
-            <!-- <a href="#">2</a> -->
-            <!-- <a href="#">3</a> -->
-        </container>
+        <button id="home" onclick="ToggleMenue()"></button>
+        <button id="setting" onclick="ToggleSettings()"></button>
     </header>
-    <iframe src="Dashboard.html" name="main"></iframe>
-    <footer>
-        <container>
-            <!-- <a href="#">1</a> -->
-            <!-- <a href="#">2</a> -->
-            <!-- <a href="#">3</a> -->
-        </container>
-    </footer>
+    <iframe src="Dashboard.html" name="main" class="mainframe"></iframe>
+    <iframe src="RPMDial.html"  scrolling="no" class="dial dial1"></iframe>
+    <iframe src="TempDial.html" scrolling="no" class="dial dial2"></iframe>
+    <iframe src="BattDial.html" scrolling="no" class="dial dial3"></iframe>
+    <iframe src="BattDial.html" scrolling="no" class="dial dial4"></iframe>
+    <iframe src="BattDial.html" scrolling="no" class="dial dial5"></iframe>
+    <iframe src="BattDial.html" scrolling="no" class="dial dial6"></iframe>
 </body>
 </html>
