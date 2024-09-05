@@ -2,7 +2,7 @@ import asyncio
 import websockets
 import serial
 
-ser = serial.Serial('/dev/ttyUSB0', 9600)
+ser = serial.Serial('/dev/ttyUSB1', 9600)
 # create handler for each connection
 async def handler(websocket, path):
     Speed = ser.readline()

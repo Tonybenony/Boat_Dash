@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">    
+<title>WebSocker Speed</title>
+<style>
+
+* {
+padding: 0;
+margin: 0;
+}
+:root{
+--widget-size: 150;
+--dial-W: 130px;
+--line-deg: 15deg;
+--clr-main: rgb(255, 255, 255);
+--clr-needle: rgb(255, 0, 0);
+--clr-lines: rgb(141, 141, 141);
+}
+.box{
+position: absolute;
+width: var(--widget-size);
+aspect-ratio: 1/1;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: transparent;
+}
+.box dial{
+display: flex;
+width: var(--dial-W);
+aspect-ratio: 1/1;
+background-color: rgba(0, 0, 0, 0.535);
+border-radius: 100%;
+border: 5px solid black;
+/* box-shadow: 0 0 5px var(--clr-main); */
+justify-content: center;
+align-items: center;
+}
+.box dial box, .box dial lines{
+position: absolute;
+width: var(--dial-W);
+aspect-ratio: 1/1;
+background-color: rgba(255, 0, 0, 0);
+}
+
+.box dial::before{
+content: "";
+aspect-ratio: 1/1;
+background-color: black;
+width: calc(var(--dial-W)*0.5);
+border-radius: 100%;
+box-shadow: 0 0 15px var(--clr-main);
+border: 3px solid var(--clr-main);
+}
+
+.box dial needle{
+position: absolute;
+display: block;
+width: calc(var(--dial-W)/10);
+aspect-ratio: 1/1;
+background-color: transparent;
+border-radius: 100%;
+border: 0px solid var(--clr-main);
+transform: rotate(0deg);
+}
+.box dial needle arrow{
+position: relative;
+width: 0;
+top: calc(var(--dial-W)/2.02);
+left: 4px;
+border-left:    calc(var(--dial-W)/35) solid transparent;
+border-right:   calc(var(--dial-W)/35) solid transparent;
+border-top:     calc(var(--dial-W)/6.4) solid var(--clr-needle);
+}
+
+.box dial hr{position: absolute;
+border: 1px solid rgb(255, 255, 255);
+width: 15px;
+height: 0px;
+left: -3px;
+top: 50%;
+}
+.box dial lines{transform: rotate(-45deg);}
+.box dial box:nth-child(2){transform: rotate(calc(var(--line-deg)*2));}
+.box dial box:nth-child(3){transform: rotate(calc(var(--line-deg)*4));}
+.box dial box:nth-child(4){transform: rotate(calc(var(--line-deg)*6));}
+.box dial box:nth-child(5){transform: rotate(calc(var(--line-deg)*8));}
+.box dial box:nth-child(6){transform: rotate(calc(var(--line-deg)*10));}
+.box dial box:nth-child(7){transform: rotate(calc(var(--line-deg)*12));}
+.box dial box:nth-child(8){transform: rotate(calc(var(--line-deg)*14));}
+.box dial box:nth-child(9){transform: rotate(calc(var(--line-deg)*16));}
+.box dial box:nth-child(10){transform: rotate(calc(var(--line-deg)*18));}
+
+
+.box dial p{
+    position: absolute;
+    color: var(--clr-main);
+    text-shadow: 0 0 3px var(--clr-main);
+}
+.box dial p:nth-child(2){margin-top: 2.5em;}
+.box dial p:nth-child(1){margin-bottom: 0.3em;font-size: 1.5em;}
+.box dial p:nth-child(2)::after{content: ""; position: absolute;width: 63px;height: 2px;background-color: var(--clr-main);display: block;top: 0px;left: -9px;}
+
+</style>
+</head>
+<body onload="show()">
+</body>
+<script>
+
+function show(){
+    const socket = new WebSocket('ws://192.168.178.129:9990');
+    socket.addEventListener('open',function (event) {socket.send('Connection Established');});
+    
+socket.addEventListener(
+    'message',
+    function (event) {
+        // document.getElementById("fet").innerHTML = event.data;
+        val = event.data
+        valSort = val.replace(/(\r\n|\n|\r)/gm,"");
+        let numArray = valSort.split(";");
+
+        RPM =  (numArray[1]/1024*270)+30
+
+        document.getElementsByTagName("needle")[0].style.transform ="rotate("+ RPM + "deg)";
+
+        RPMBalkenVal = Math.floor((numArray[1]/1024*120))
+        
+        document.getElementById("value").innerHTML = RPMBalkenVal+"C°";
+
+
+        // console.log(numArray[0],numArray[1],numArray[2]);
+    }
+);
+setTimeout(() => show(), 500)
+}
+
+const contactServer = () => {
+    socket.send("Initialize");
+}
+function disconnect(){
+    document.getElementById("btn").onclick = "show()";
+
+}
+</script>
+<container class="box">
+    <dial>
+        <p id="value">000</p>
+        <p>Temp</p>
+        <lines><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box><box><hr></box></lines>
+        <needle><arrow></arrow></needle>
+    </dial>
+</container>
+</html>

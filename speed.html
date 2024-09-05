@@ -1,33 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <link rel="stylesheet" href="ValueStyle.css">
-    <title>WebSocker Speed</title>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">    
+<!-- <link rel="stylesheet" href="ValueStyle.css"> -->
+<title>WebSocker Speed</title>
+<style>
+
+* {padding: 0;margin: 0;}
+:root{--dial-W: 500px;}
+.box{position: absolute;top: 0;left: 0;bottom: 0;right: 0;display: flex;justify-content: center;align-items: center;background-color: #333;}
+.box dial{display: flex;width: var(--dial-W);background-color: transparent;aspect-ratio: 1/1;border-radius: 100%;border: 10px solid white;box-shadow: 0 0 50px red;justify-content: center;align-items: center;}
+.box dial needle{position: absolute; display: block;width: calc(var(--dial-W)/10);aspect-ratio: 1/1;background-color: red;border-radius: 100%;border: 6px solid black;transform: rotate(240deg);}
+.box dial needle::after{content: "";position: relative;width: 0;top: calc(var(--dial-W)/2);border-left:    calc(var(--dial-W)/20) solid transparent;border-right:   calc(var(--dial-W)/20) solid transparent;border-top:     calc(var(--dial-W)/2.2) solid red;}
+.box dial hr{position: absolute;width: 300px;height: 0;border: 5px solid red;}
+.box dial hr:nth-child(2){border-color: white;margin-right: calc(var(--dial-W)/1.);transform: rotate(45deg);transform-origin: right;}
+
+diagram {position: absolute;bottom: 10px;left: 10px;width: 100px;height: 100px;background-color: rgb(118, 136, 181);}
+diagram::before{content: "";display: block;position: absolute;bottom: 0;width: 95px;height: 400px;border: 5px solid black;}
+
+balken diagram:nth-child(1){background-color: rgb(0, 255, 30);left: 200px;}
+balken diagram:nth-child(2){background-color: red;left: 400px;}
+
+</style>
 </head>
-<body>
+<body onload="show()">
     <button id="btn" onclick="show()">Connect !</button>
 </body>
 <script>
 
 function show(){
-    const socket = new WebSocket('ws://localhost:9990');
-    socket.addEventListener(
-        'open',
-        function (event) {
-            socket.send('Connection Established');
-        }
-    );
-document.getElementById("btn").onclick = "disconnect()";
+    const socket = new WebSocket('ws://192.168.178.129:9990');
+    socket.addEventListener('open',function (event) {socket.send('Connection Established');});
+    
 socket.addEventListener(
     'message',
     function (event) {
-        document.getElementById("fet").innerHTML = event.data
+        // document.getElementById("fet").innerHTML = event.data;
+        val = event.data
+        valSort = val.replace(/(\r\n|\n|\r)/gm,"");
+        let numArray = valSort.split(";");
+
+        RPM =  (numArray[0]/1024*160)+10
+        Temp = (numArray[1]/1024*160)+190
+        Batt = (numArray[2]/1024*270)+45
+
+        document.getElementsByTagName("needle")[0].style.transform ="rotate("+ RPM + "deg)";
+        document.getElementsByTagName("needle")[1].style.transform ="rotate("+ Temp + "deg)";
+        document.getElementsByTagName("needle")[2].style.transform ="rotate("+ Batt + "deg)";
+
+        RPMBalken =  (numArray[0]/1024*400)
+        TempBalken =  (numArray[1]/1024*400)
+        Battalken =  (numArray[2]/1024*400)
+
+        document.getElementsByTagName("diagram")[0].style.height = RPMBalken+"px" ;
+        document.getElementsByTagName("diagram")[1].style.height = TempBalken+"px" ;
+        document.getElementsByTagName("diagram")[2].style.height = Battalken+"px" ;
+
+
+        // console.log(numArray[0],numArray[1],numArray[2]);
     }
 );
-setTimeout(() => show(), 50)
+setTimeout(() => show(), 20)
 }
 
 const contactServer = () => {
@@ -38,5 +73,21 @@ function disconnect(){
 
 }
 </script>
-<value id="fet"></value>
+<container class="box">
+    <dial>
+        <needle></needle>
+        <needle></needle>
+    </dial>
+    <dial>
+        <needle></needle>
+    </dial>
+
+
+</container>
+<Balken>
+<diagram></diagram>
+<diagram></diagram>
+<diagram></diagram>
+</Balken>
+    <value id="fet">dummy value</value>
 </html>
