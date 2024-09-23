@@ -55,10 +55,24 @@ dial4coockie = getCookie("dial4");
 dial5coockie = getCookie("dial5");
 dial6coockie = getCookie("dial6");
 
-color1Prop = getCookie("color1");document.documentElement.style.setProperty('--textclr',     color1Prop);document.getElementById("color1").value = color1Prop;
-color2Prop = getCookie("color2");document.documentElement.style.setProperty('--BorderColor', color2Prop);document.getElementById("color2").value = color2Prop;
-color3Prop = getCookie("color3");document.documentElement.style.setProperty('--MainColor',   color3Prop);document.getElementById("color3").value = color3Prop;
-color4Prop = getCookie("color4");document.documentElement.style.setProperty('--secondColor', color4Prop);document.getElementById("color4").value = color4Prop;
+color1Prop = getCookie("color1");
+color2Prop = getCookie("color2");
+color3Prop = getCookie("color3");
+color4Prop = getCookie("color4");
+
+if (color1Prop === "" ){color1Prop = "#ffffff"} 
+if (color2Prop === "" ){color2Prop = "#000000"} 
+if (color3Prop === "" ){color3Prop = "#333333"} 
+if (color4Prop === "" ){color4Prop = "#f5deb3"} 
+
+document.documentElement.style.setProperty('--textclr',     color1Prop);
+document.getElementById("color1").value = color1Prop;
+document.documentElement.style.setProperty('--BorderColor', color2Prop);
+document.getElementById("color2").value = color2Prop;
+document.documentElement.style.setProperty('--MainColor',   color3Prop);
+document.getElementById("color3").value = color3Prop;
+document.documentElement.style.setProperty('--secondColor', color4Prop);
+document.getElementById("color4").value = color4Prop;
 
 if (dial1coockie === "true"){document.getElementById("pI1").style.background = "lightblue";document.getElementsByClassName("dial1")[0].style.display = "block";document.getElementById("I1").checked = true;}else{document.getElementById("pI1").style.background = "transparent";document.getElementsByClassName("dial1")[0].style.display = "none";document.getElementById("I1").checked = false;}
 if (dial2coockie === "true"){document.getElementById("pI2").style.background = "lightblue";document.getElementsByClassName("dial2")[0].style.display = "block";document.getElementById("I2").checked = true;}else{document.getElementById("pI2").style.background = "transparent";document.getElementsByClassName("dial2")[0].style.display = "none";document.getElementById("I2").checked = false;}
@@ -152,8 +166,8 @@ function ResetColor(){
                             <td>Border Color</td>
                         </tr>
                         <tr>
-                            <td><input type="color" title="Text Color" id="color1" value="#000000" onchange="refreshColor()"></td>
-                            <td><input type="color" title="Border Color" id="color2" value="#ffffff" onchange="refreshColor()"></td>
+                            <td><input type="color" title="Text Color" id="color1" value="#ffffff" onchange="refreshColor()"></td>
+                            <td><input type="color" title="Border Color" id="color2" value="#000000" onchange="refreshColor()"></td>
                         </tr>
                         <tr>
                             <td>Main Color</td>
